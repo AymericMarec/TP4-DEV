@@ -7,6 +7,7 @@ import os
 import time
 import datetime
 from colorama import Fore
+import threading
 # class MyArgumentParser(argparse.ArgumentParser):
 
 #     def print_help(self, file=None):
@@ -61,7 +62,21 @@ def WriteLog(message):
 
 def FormatLog(message,type):
     ts = time.time()
-    return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') + type + message
+    return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ type +" "+ message
+
+def VerifyConnect():
+    while True:
+        if time.time() - Timer > 60 :
+            msg = FormatLog(f"Aucun client depuis plus de une minute.","WARN")
+            print(Fore.RED +msg)
+            WriteLog(msg)
+            Timer = time.time()
+        time.sleep(1)
+
+
+bg_task = threading.Thread(target=VerifyConnect)
+bg_task.daemon = True
+bg_task.start()
 
 port,host = GetInfos()
 
@@ -70,6 +85,10 @@ global LOG_PATH
 LOG_PATH = os.path.join("/var","log", "bs_server", "bs_server.log")
 if not(os.path.exists(pathfold) and os.path.isdir(pathfold)):
     os.makedirs(pathfold)
+
+global Timer
+Timer = time.time()
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, int(port)))  
@@ -89,6 +108,7 @@ while True:
     try:
         data = conn.recv(1024)
         if not data: break
+        Timer = time.time()
         IpClientMessage = str(conn.getpeername()).split("'")[1]
         msg = FormatLog('Le client {IpClientMessage} a envoyé "{data}".',"INFO")
         print(msg)
