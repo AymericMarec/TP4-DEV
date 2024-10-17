@@ -55,14 +55,14 @@ def WriteLog(message):
 def FormatLog(message,type):
     ts = time.time()
     if(type == "WARN"):
-        return Fore.WHITE + datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ Fore.ORANGE+ type +Fore.WHITE +" "+ message
+        return Fore.WHITE + datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ '\033[33m' + type +Fore.WHITE +" "+ message
     else :
         return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ type +" "+ message
 
 def VerifyConnect():
     global Timer
     while True:
-        if time.time() - Timer > 60 :
+        if time.time() - Timer > 10 :
             msg = FormatLog(f"Aucun client depuis plus de une minute.","WARN")
             print(Fore.RED +msg)
             WriteLog(msg)
