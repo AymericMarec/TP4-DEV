@@ -65,10 +65,11 @@ def FormatLog(message,type):
 
 port,host = GetInfos()
 
-# pathfold = os.path.join("/var","log", "bs_server")
-# LOG_PATH = os.path.join("/var","log", "bs_server", "bs_server.log")
-# if not(os.path.exists(pathfold) and os.path.isdir(pathfold)):
-#     os.makedirs(pathfold)
+pathfold = os.path.join("/var","log", "bs_server")
+global LOG_PATH
+LOG_PATH = os.path.join("/var","log", "bs_server", "bs_server.log")
+if not(os.path.exists(pathfold) and os.path.isdir(pathfold)):
+    os.makedirs(pathfold)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, int(port)))  
