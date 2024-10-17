@@ -109,7 +109,7 @@ while True:
         msg = FormatLog(f'Le client {IpClientMessage} a envoyé "{data}".',"INFO")
         print(msg)
         WriteLog(msg)
-        ToSend = bytes(eval(data))
+        ToSend = eval(data).encode()
         conn.sendall(ToSend)
 
         msg = FormatLog(f'Réponse envoyée au client {IpClientMessage} : "{ToSend}".',"INFO")

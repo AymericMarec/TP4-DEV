@@ -13,7 +13,7 @@ if not(re.search("\d+\s*[+\-*\/]\s*\d+",UserInput)):
     exit(0)
 UserInput = UserInput.replace(" ", "")
 
-s.sendall(bytes(UserInput))
+s.sendall(UserInput.encode())
 
 data = s.recv(1024)
 
