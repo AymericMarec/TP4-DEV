@@ -106,13 +106,13 @@ while True:
         if not data: break
         Timer = time.time()
         IpClientMessage = str(conn.getpeername()).split("'")[1]
-        msg = FormatLog('Le client {IpClientMessage} a envoyé "{data}".',"INFO")
+        msg = FormatLog(f'Le client {IpClientMessage} a envoyé "{data}".',"INFO")
         print(msg)
         WriteLog(msg)
         ToSend = bytes(eval(data))
         conn.sendall(ToSend)
 
-        msg = FormatLog(f'Réponse envoyée au client {IpClientMessage} : "{message}".',"INFO")
+        msg = FormatLog(f'Réponse envoyée au client {IpClientMessage} : "{ToSend}".',"INFO")
         print(msg)
         WriteLog(msg)
     except socket.error:
