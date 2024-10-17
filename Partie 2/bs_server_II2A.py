@@ -8,13 +8,6 @@ import time
 import datetime
 from colorama import Fore
 import threading
-# class MyArgumentParser(argparse.ArgumentParser):
-
-#     def print_help(self, file=None):
-#         if file is None:
-#             file = _sys.stdout
-#         message = "Please go to http://some_website.com/help to understand more about our software"
-#         file.write(message+"\n")
 
 def ValidePort(port):
     try:
@@ -41,7 +34,6 @@ def GetInfos():
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", action="store")
     parser.add_argument("-l", "--listen", action="store")
-    # parser.add_argument("-h", "--help", action="store_true")
     args = parser.parse_args()
     if(args.port == None):
         port = 13337 
@@ -62,7 +54,10 @@ def WriteLog(message):
 
 def FormatLog(message,type):
     ts = time.time()
-    return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ type +" "+ message
+    if(type == "WARN"):
+        return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ Fore.RED+ type +Fore.WHITE +" "+ message
+    else :
+        return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') +" "+ type +" "+ message
 
 def VerifyConnect():
     while True:
@@ -73,7 +68,8 @@ def VerifyConnect():
             Timer = time.time()
         time.sleep(1)
 
-
+global Timer
+Timer = time.time()
 bg_task = threading.Thread(target=VerifyConnect)
 bg_task.daemon = True
 bg_task.start()
@@ -86,8 +82,7 @@ LOG_PATH = os.path.join("/var","log", "bs_server", "bs_server.log")
 if not(os.path.exists(pathfold) and os.path.isdir(pathfold)):
     os.makedirs(pathfold)
 
-global Timer
-Timer = time.time()
+
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
