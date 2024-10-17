@@ -109,10 +109,10 @@ while True:
         msg = FormatLog(f'Le client {IpClientMessage} a envoyé "{data}".',"INFO")
         print(msg)
         WriteLog(msg)
-        ToSend = eval(data).encode()
+        ToSend = str(eval(data)).encode()
         conn.sendall(ToSend)
 
-        msg = FormatLog(f'Réponse envoyée au client {IpClientMessage} : "{ToSend}".',"INFO")
+        msg = FormatLog(f'Réponse envoyée au client {IpClientMessage} : "{str(ToSend)}".',"INFO")
         print(msg)
         WriteLog(msg)
     except socket.error:
