@@ -50,7 +50,7 @@ def GetInfos():
 
 def WriteLog(message):
     logfile = open(LOG_PATH, "a")
-    logfile.write(message)
+    logfile.write(message+"\n")
 
 def FormatLog(message,type):
     ts = time.time()
@@ -62,7 +62,7 @@ def FormatLog(message,type):
 def VerifyConnect():
     global Timer
     while True:
-        if time.time() - Timer > 10 :
+        if time.time() - Timer > 60 :
             msg = FormatLog(f"Aucun client depuis plus de une minute.","WARN")
             print(Fore.RED +msg)
             WriteLog(msg)

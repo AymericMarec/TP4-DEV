@@ -18,4 +18,3 @@ if data :
     print(f"Le serveur a rÃ©pondu {repr(data)}")
 
 sys.exit()
-sys.exit()
