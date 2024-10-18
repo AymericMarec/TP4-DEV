@@ -35,7 +35,7 @@ try :
     msg = FormatLog(f"Connexion réussie à {host}:{port}","INFO")
     WriteLog(msg)
 except :
-    msg = FormatLog(f"Impossible de se connecter au serveur {host} sur le port {host}.","ERROR")
+    msg = FormatLog(f"Impossible de se connecter au serveur {host} sur le port {port}.","ERROR")
     print(msg)
     WriteLog(msg)
 
