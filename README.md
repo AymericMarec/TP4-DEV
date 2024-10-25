@@ -1,8 +1,10 @@
-# I. Simple bs program
+# TP4 DEV : Socquettes
 
-- 🌞fichier client :
+## I. Simple bs program
 
-- 🌞fichier server : 
+- 🌞fichier client : [client](./Partie%201/bs_client_I1.py)
+
+- 🌞fichier server : [serveur](./Partie%201/bs_server_I1.py)
 
 
 ### 🌞 Commandes...
@@ -26,15 +28,34 @@ LISTEN 0      1         10.1.1.253:13337      0.0.0.0:*    users:(("python",pid=
 ```
 
 
-## 2. User friendly
+### 2. User friendly
 
-- fichier serveur :
+- fichier serveur : [serveur](./Partie%201/bs_server_I2.py)
 
-- fichier client :
+- fichier client : [client](./Partie%201/bs_client_I2.py)
 
-## 3. You say client I hear control
+### 3. You say client I hear control
 
-- fichier client :
+- fichier client : [client](./Partie%201/bs_client_I3.py)
 
-# II. You say dev I say good practices
+## II. You say dev I say good practices
 
+### 1. Args
+
+- 🌞fichier client : [client](./Partie%202/bs_server_II1.py)
+
+### 2. Logs
+
+### A. Logs client
+
+- 🌞fichier server : [serveur](./Partie%202/bs_server_II2A.py)
+
+### B. Logs client
+
+- fichier client : [client](./Partie%202/bs_client_II2B.py)
+
+## III. COMPUTE
+
+- fichier client : [client](./Partie%203/bs_client_III.py)
+
+- 🌞fichier server : [serveur](./Partie%203/bs_server_III.py)
